@@ -1,10 +1,12 @@
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 public class AdminPanel {
 
     private static AdminPanel pointer; // lazy instantiation
-    private Set<Users> twitterUsers;
+    private HashMap<Integer, Users> twitterUsers;
 
     public static AdminPanel getInstance() {
         if(pointer == null){
@@ -14,19 +16,19 @@ public class AdminPanel {
     }
 
     private AdminPanel() {
-        twitterUsers = new HashSet<>();
+        twitterUsers = new HashMap();
     }
 
     public void addUser(Users user) {
-        twitterUsers.add(user);
+        twitterUsers.put(user.getId().hashCode(), user);
     }
 
     public void addUserGroup(Users user){
-        twitterUsers.add(user);
+        twitterUsers.put(user.getId().hashCode(), user);
     }
 
-    public Set<Users> getTwitterUsers() {
-        return twitterUsers;
+    public Collection<Users> getTwitterUsers() {
+        return twitterUsers.values();
     }
 
 }

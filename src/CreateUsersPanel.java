@@ -49,10 +49,43 @@ public class CreateUsersPanel extends JPanel {
          * Button to open a selected user from TreeView
          */
         JButton openUserView = new JButton("Open User View");
+        openUserView.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+                for(Users user: adminPanel.getTwitterUsers()){
+                    System.out.println(user.getId());
+                }
+            }
+        });
         JButton showUserTotal = new JButton("Show User Total");
+        showUserTotal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, adminPanel.getTwitterUsers());
+            }
+        });
         JButton showUserGroupTotal = new JButton("Show Group Total");
+        showUserGroupTotal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, adminPanel.getTwitterUsers());
+            }
+        });
         JButton showMessagesTotal = new JButton("Show # of messages");
+        showMessagesTotal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, numMessages);
+            }
+        });
         JButton showPositiveMessagesTotal = new JButton("Show % of posi messages");
+        showPositiveMessagesTotal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, numNiceMessages);
+            }
+        });
 
 
         setLayout(new GridBagLayout());

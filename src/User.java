@@ -1,19 +1,17 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class User implements Users{
 
     private String userId;
-    private List<User> followers = new ArrayList<>();
-    private List<User> following = new ArrayList<>();
+    private Set<User> followers = new HashSet();
+    private Set<User> following = new HashSet();
 
     public User(String userId){
         this.userId = userId;
     }
 
     @Override
-    public void addUser(Users user) {
+    public void create(Users user) {
         try {
             following.add((User) user);
         }
@@ -30,11 +28,11 @@ public class User implements Users{
         System.out.println(message);
     }
 
-    public List<User> getFollowers(){
+    public Set<User> getFollowers(){
         return followers;
     }
 
-    public List<User> getFollowing(){
+    public Set<User> getFollowing(){
         return following;
     }
 

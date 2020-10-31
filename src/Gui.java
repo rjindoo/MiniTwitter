@@ -27,7 +27,6 @@ public class Gui extends JFrame{
         Container c = getContentPane();
 
         c.add(textArea, BorderLayout.CENTER);
-        //c.add(getNumOfUsers, BorderLayout.EAST);
         c.add(createUsersPanel, BorderLayout.EAST);
 
     }

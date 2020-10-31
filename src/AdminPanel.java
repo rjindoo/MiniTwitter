@@ -14,7 +14,7 @@ public class AdminPanel {
     }
 
     private AdminPanel() {
-        twitterUsers = new HashSet();
+        twitterUsers = new HashSet<>();
     }
 
     public void addUser(Users user) {

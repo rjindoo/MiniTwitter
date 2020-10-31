@@ -1,19 +1,22 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 public class UserGroup implements Users{
 
     private String groupId;
-    private List<Users> users = new ArrayList();
+    //private List<Users> users = new ArrayList();
+    private HashMap<Integer, Users> users = new HashMap();
 
     public UserGroup(String groupId){
         this.groupId = groupId;
+        groupId.hashCode();
     }
 
-
     @Override
-    public void addUser(Users user) {
-        this.users.add(user);
+    public void create(Users user) {
+        this.users.put(user.getId().hashCode(), user);
     }
 
     @Override
@@ -21,12 +24,12 @@ public class UserGroup implements Users{
         return groupId;
     }
 
-    public List<Users> getUsers(){
-        return this.users;
+    public Collection<Users> getUsers(){
+        return this.users.values();
     }
 
     public void setUsers(List<Users> users){
-        this.users = users;
+        // TODO??
     }
 
 }

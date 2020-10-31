@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class UserGroup implements Users{
 
-    private String userId = UUID.randomUUID().toString();
+    private String groupId;
     private List<Users> users = new ArrayList();
+
+    public UserGroup(String groupId){
+        this.groupId = groupId;
+    }
 
 
     @Override
@@ -15,7 +18,7 @@ public class UserGroup implements Users{
 
     @Override
     public String getId() {
-        return userId;
+        return groupId;
     }
 
     public List<Users> getUsers(){

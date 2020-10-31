@@ -4,9 +4,13 @@ import java.util.UUID;
 
 public class User implements Users{
 
-    private String userId = UUID.randomUUID().toString();
+    private String userId;
     private List<User> followers = new ArrayList<>();
     private List<User> following = new ArrayList<>();
+
+    public User(String userId){
+        this.userId = userId;
+    }
 
     @Override
     public void addUser(Users user) {

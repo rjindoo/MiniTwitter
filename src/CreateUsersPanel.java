@@ -15,7 +15,7 @@ public class CreateUsersPanel extends JPanel {
         size.width = 400;
         setPreferredSize(size);
 
-        setBorder(BorderFactory.createLineBorder(Color.RED));
+        setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         //JLabel userIdLabel = new JLabel("User Id: ");
         //JLabel groupUserIdLabel = new JLabel("Group Id: ");

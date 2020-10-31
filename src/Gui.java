@@ -10,21 +10,14 @@ public class Gui extends JFrame{
     CreateUsersPanel createUsersPanel;
 
     public Gui(){
-        super();
+        super("Mini-Twitter");
 
         setLayout(new BorderLayout());
 
         final JTextArea textArea = new JTextArea();
 
         /**
-         * Buttons
-         */
-        JButton viewUser = new JButton("Open User View"); // button not drawn or listening
-        JButton getNumOfUsers = new JButton("Get # of Users");
-        JButton getNumOfUserGroups = new JButton("Get # of GroupUsers");
-
-        /**
-         * Form for adding users and usergroups
+         * Form for adding users and usergroups... see (CreateUsersPanel.java)
          */
         createUsersPanel = new CreateUsersPanel(adminPanel);
 
@@ -35,7 +28,6 @@ public class Gui extends JFrame{
 
         c.add(textArea, BorderLayout.CENTER);
         //c.add(getNumOfUsers, BorderLayout.EAST);
-        c.add(getNumOfUserGroups, BorderLayout.WEST);
         c.add(createUsersPanel, BorderLayout.EAST);
 
     }

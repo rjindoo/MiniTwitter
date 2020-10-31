@@ -9,7 +9,7 @@ public class Main{
             @Override
             public void run() {
                 JFrame frame = new Gui();
-                frame.setSize(550, 400);
+                frame.setSize(650, 500);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true);
             }

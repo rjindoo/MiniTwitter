@@ -8,10 +8,6 @@ public class Gui extends JFrame{
     //Hashtable<String, User> users = new Hashtable();
     AdminPanel adminPanel = AdminPanel.getInstance();
     CreateUsersPanel createUsersPanel;
-    private int numUser = 0;
-    private int numGroupUser = 0;
-    private int numMessages = 0;
-    private int numNiceMessages = 0;
 
     public Gui(){
         super();
@@ -42,28 +38,6 @@ public class Gui extends JFrame{
         c.add(getNumOfUserGroups, BorderLayout.WEST);
         c.add(createUsersPanel, BorderLayout.EAST);
 
-
-        getNumOfUsers.addActionListener(new ActionListener() {
-            /**
-             *  Button action to get total number of users
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "# of users: " + numUser);
-            }
-        });
-        getNumOfUserGroups.addActionListener(new ActionListener() {
-            /**
-             *   Button action to get total number of groupUsers
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for(Users user: adminPanel.getTwitterUsers()) {
-                    textArea.append(""+user.getId()+"\n");
-                }
-                //JOptionPane.showMessageDialog(null, "# of groupUsers: " + numGroupUser);
-            }
-        });
     }
 
 }

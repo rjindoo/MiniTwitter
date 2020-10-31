@@ -23,7 +23,7 @@ public class AdminPanel extends JPanel {
         Dimension size = getPreferredSize();
         size.width = 400;
         setPreferredSize(size);
-        setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        setBorder(BorderFactory.createTitledBorder("Admin Panel"));
 
         //JLabel userIdLabel = new JLabel("User Id: ");
         //JLabel groupUserIdLabel = new JLabel("Group Id: ");

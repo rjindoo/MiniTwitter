@@ -25,11 +25,6 @@ public class User implements Users{
         }
     }
 
-    @Override
-    public String getId(){
-        return userId;
-    }
-
     public void post(String message){
         System.out.println(message);
     }
@@ -40,6 +35,11 @@ public class User implements Users{
 
     public Set<User> getFollowing(){
         return following;
+    }
+
+    @Override
+    public String toString(){
+        return userId;
     }
 
 }

@@ -17,20 +17,12 @@ public class UserGroup implements Users{
         /**
          * Creates a user or userGroup in this tree's children
          */
-        if(users.containsKey(user.getId().hashCode())){
+        if(users.containsKey(user.toString().hashCode())){
             System.out.println("User already exists");
             return false;
         }
-        this.users.put(user.getId().hashCode(), user);
+        this.users.put(user.toString().hashCode(), user);
         return true;
-    }
-
-    @Override
-    public String getId() {
-        /**
-         * returns this groups String name (e.g. userGroup named "CS 3560")
-         */
-        return groupId;
     }
 
     public Collection<Users> getUsers(){
@@ -39,6 +31,11 @@ public class UserGroup implements Users{
 
     public void setUsers(List<Users> users){
         // TODO??
+    }
+
+    @Override
+    public String toString(){
+        return groupId;
     }
 
 }

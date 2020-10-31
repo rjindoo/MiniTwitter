@@ -42,7 +42,7 @@ public class AdminPanel extends JPanel {
         addUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                treePanel.addObject(userIdField.getText());
+                treePanel.addObject(new User(userIdField.getText()));
                 JOptionPane.showMessageDialog(null, "Added " + userIdField.getText());
             }
         });
@@ -51,7 +51,7 @@ public class AdminPanel extends JPanel {
         addGroupUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                treePanel.addObject(userGroupIdField.getText());
+                treePanel.addObject(new UserGroup(userGroupIdField.getText()));
                 JOptionPane.showMessageDialog(null, "Added " + userGroupIdField.getText());
             }
         });

@@ -15,15 +15,10 @@ public class Gui extends JFrame{
 
         //final JTextArea textArea = new JTextArea();
 
-        /**
-         * Form for adding users and userGroups... see (CreateUsersPanel.java)
-         */
-        MyTreeModelListener tree = new MyTreeModelListener();
+        /** Form for adding users and userGroups... see (CreateUsersPanel.java) */
         adminPanel = AdminPanel.getInstance();
 
-        /**
-         * Content Pane to place widgets
-         */
+        /** Content Pane to place widgets */
         Container c = getContentPane();
 
         c.add(adminPanel, BorderLayout.CENTER);

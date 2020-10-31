@@ -11,15 +11,21 @@ public class User implements Users{
     }
 
     @Override
-    public void create(Users user) {
+    public boolean create(Users user) {
+        /**
+         * Follows another user
+         */
         try {
             following.add((User) user);
+            return true;
         }
         catch (ClassCastException e){
             System.out.println("Can not follow a UserGroup "+e);
+            return false;
         }
     }
 
+    @Override
     public String getId(){
         return userId;
     }

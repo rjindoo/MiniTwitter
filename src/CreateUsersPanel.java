@@ -41,7 +41,7 @@ public class CreateUsersPanel extends JPanel {
         addGroupUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.addUser(new UserGroup(userGroupIdField.getText()));
+                adminPanel.addUserGroup(new UserGroup(userGroupIdField.getText()));
                 JOptionPane.showMessageDialog(null, "Added " + userGroupIdField.getText());
             }
         });
@@ -58,6 +58,7 @@ public class CreateUsersPanel extends JPanel {
                 }
             }
         });
+
         JButton showUserTotal = new JButton("Show User Total");
         showUserTotal.addActionListener(new ActionListener() {
             @Override
@@ -65,6 +66,7 @@ public class CreateUsersPanel extends JPanel {
                 JOptionPane.showMessageDialog(null, adminPanel.getTwitterUsers());
             }
         });
+
         JButton showUserGroupTotal = new JButton("Show Group Total");
         showUserGroupTotal.addActionListener(new ActionListener() {
             @Override
@@ -72,6 +74,7 @@ public class CreateUsersPanel extends JPanel {
                 JOptionPane.showMessageDialog(null, adminPanel.getTwitterUsers());
             }
         });
+
         JButton showMessagesTotal = new JButton("Show # of messages");
         showMessagesTotal.addActionListener(new ActionListener() {
             @Override
@@ -79,6 +82,7 @@ public class CreateUsersPanel extends JPanel {
                 JOptionPane.showMessageDialog(null, numMessages);
             }
         });
+
         JButton showPositiveMessagesTotal = new JButton("Show % of posi messages");
         showPositiveMessagesTotal.addActionListener(new ActionListener() {
             @Override

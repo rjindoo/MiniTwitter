@@ -1,7 +1,4 @@
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class AdminPanel {
 
@@ -17,14 +14,25 @@ public class AdminPanel {
 
     private AdminPanel() {
         twitterUsers = new HashMap();
+        // ^^ is bad, creating a new user with same name will override previous user
     }
 
-    public void addUser(Users user) {
+    public boolean addUser(Users user) {
+        if(twitterUsers.containsKey(user.getId().hashCode())){
+            System.out.println("User already exists");
+            return false;
+        }
         twitterUsers.put(user.getId().hashCode(), user);
+        return true;
     }
 
-    public void addUserGroup(Users user){
+    public boolean addUserGroup(Users user){
+        if(twitterUsers.containsKey(user.getId().hashCode())){
+            System.out.println("UserGroup already exists");
+            return false;
+        }
         twitterUsers.put(user.getId().hashCode(), user);
+        return true;
     }
 
     public Collection<Users> getTwitterUsers() {

@@ -17,7 +17,7 @@ public class Gui extends JFrame{
         final JTextArea textArea = new JTextArea();
 
         /**
-         * Form for adding users and usergroups... see (CreateUsersPanel.java)
+         * Form for adding users and userGroups... see (CreateUsersPanel.java)
          */
         createUsersPanel = new CreateUsersPanel(adminPanel);
 

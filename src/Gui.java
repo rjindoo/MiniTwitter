@@ -10,7 +10,6 @@ public class Gui extends JFrame{
 
     public Gui(){
         super("Mini-Twitter");
-
         setLayout(new BorderLayout());
 
         //final JTextArea textArea = new JTextArea();

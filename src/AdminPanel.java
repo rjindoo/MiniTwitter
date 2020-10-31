@@ -42,7 +42,7 @@ public class AdminPanel extends JPanel {
         addUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                treePanel.addObject(new User(userIdField.getText()));
+                treePanel.addUsers(new User(userIdField.getText()));
                 JOptionPane.showMessageDialog(null, "Added " + userIdField.getText());
             }
         });
@@ -51,7 +51,7 @@ public class AdminPanel extends JPanel {
         addGroupUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                treePanel.addObject(new UserGroup(userGroupIdField.getText()));
+                treePanel.addUsers(new UserGroup(userGroupIdField.getText()));
                 JOptionPane.showMessageDialog(null, "Added " + userGroupIdField.getText());
             }
         });
@@ -60,7 +60,7 @@ public class AdminPanel extends JPanel {
         openUserView.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                treePanel.accessCurrentNode();
             }
         });
 
@@ -97,6 +97,7 @@ public class AdminPanel extends JPanel {
         });
 
 
+        /** Setting up layout for AdminPanel */
         setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
 

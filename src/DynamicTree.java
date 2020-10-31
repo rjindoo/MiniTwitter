@@ -8,8 +8,6 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
-import javax.swing.event.TreeModelEvent;
-import javax.swing.event.TreeModelListener;
 
 public class DynamicTree extends JPanel {
     protected DefaultMutableTreeNode rootNode;
@@ -25,57 +23,49 @@ public class DynamicTree extends JPanel {
         //treeModel.addTreeModelListener(new MyTreeModelListener());
         tree = new JTree(treeModel);
         //tree.setEditable(true);
-        tree.getSelectionModel().setSelectionMode
-                (TreeSelectionModel.SINGLE_TREE_SELECTION);
+        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setShowsRootHandles(true);
 
         JScrollPane scrollPane = new JScrollPane(tree);
         add(scrollPane);
     }
 
-    /** Remove all nodes except the root node.
-    public void clear() {
-        rootNode.removeAllChildren();
-        treeModel.reload();
-    }*/
-
-    /** Remove the currently selected node.
-    public void removeCurrentNode() {
+    /** Access the currently selected node. */
+    public void accessCurrentNode() {
         TreePath currentSelection = tree.getSelectionPath();
         if (currentSelection != null) {
-            DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode)
-                    (currentSelection.getLastPathComponent());
-            MutableTreeNode parent = (MutableTreeNode)(currentNode.getParent());
+            DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
+            MutableTreeNode parent = (MutableTreeNode) (currentNode.getParent());
             if (parent != null) {
-                treeModel.removeNodeFromParent(currentNode);
+                //treeModel.removeNodeFromParent(currentNode);
+                System.out.println("Accessing " + currentNode);
                 return;
             }
         }
 
         // Either there was no selection, or the root was selected.
         toolkit.beep();
-    }*/
+    }
 
     /** Add child to the currently selected node. */
-    public DefaultMutableTreeNode addObject(Users child) {
+    public DefaultMutableTreeNode addUsers(Users child) {
         DefaultMutableTreeNode parentNode = null;
         TreePath parentPath = tree.getSelectionPath();
 
         if (parentPath == null) {
             parentNode = rootNode;
         } else {
-            parentNode = (DefaultMutableTreeNode)
-                    (parentPath.getLastPathComponent());
+            parentNode = (DefaultMutableTreeNode) (parentPath.getLastPathComponent());
         }
 
-        return addObject(parentNode, child, true);
+        return addUsers(parentNode, child, true);
     }
 
-    public DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent, Users child) {
+    /*public DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent, Users child) {
         return addObject(parent, child, false);
-    }
+    }*/
 
-    public DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent, Users child, boolean shouldBeVisible) {
+    public DefaultMutableTreeNode addUsers(DefaultMutableTreeNode parent, Users child, boolean shouldBeVisible) {
         DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(child);
 
         if (parent == null) {

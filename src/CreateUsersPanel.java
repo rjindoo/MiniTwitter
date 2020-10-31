@@ -30,7 +30,7 @@ public class CreateUsersPanel extends JPanel {
         addUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.addUser(new User(userIdField.getText()));
+                //adminPanel.addUser(new User(userIdField.getText()));
                 JOptionPane.showMessageDialog(null, "Added " + userIdField.getText());
             }
         });
@@ -41,7 +41,7 @@ public class CreateUsersPanel extends JPanel {
         addGroupUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.addUserGroup(new UserGroup(userGroupIdField.getText()));
+                //adminPanel.addUserGroup(new UserGroup(userGroupIdField.getText()));
                 JOptionPane.showMessageDialog(null, "Added " + userGroupIdField.getText());
             }
         });
@@ -53,9 +53,6 @@ public class CreateUsersPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO
-                for(Users user: adminPanel.getTwitterUsers()){
-                    System.out.println(user.getId());
-                }
             }
         });
 
@@ -63,7 +60,7 @@ public class CreateUsersPanel extends JPanel {
         showUserTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, adminPanel.getTwitterUsers());
+                //JOptionPane.showMessageDialog(null, adminPanel.getTwitterUsers());
             }
         });
 
@@ -71,7 +68,7 @@ public class CreateUsersPanel extends JPanel {
         showUserGroupTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, adminPanel.getTwitterUsers());
+                //JOptionPane.showMessageDialog(null, adminPanel.getTwitterUsers());
             }
         });
 

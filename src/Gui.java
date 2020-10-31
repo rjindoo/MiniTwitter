@@ -6,28 +6,27 @@ import java.awt.event.ActionListener;
 public class Gui extends JFrame{
 
     //Hashtable<String, User> users = new Hashtable();
-    AdminPanel adminPanel = AdminPanel.getInstance();
-    CreateUsersPanel createUsersPanel;
+    AdminPanel adminPanel;
 
     public Gui(){
         super("Mini-Twitter");
 
         setLayout(new BorderLayout());
 
-        final JTextArea textArea = new JTextArea();
+        //final JTextArea textArea = new JTextArea();
 
         /**
          * Form for adding users and userGroups... see (CreateUsersPanel.java)
          */
-        createUsersPanel = new CreateUsersPanel(adminPanel);
+        MyTreeModelListener tree = new MyTreeModelListener();
+        adminPanel = AdminPanel.getInstance();
 
         /**
          * Content Pane to place widgets
          */
         Container c = getContentPane();
 
-        c.add(textArea, BorderLayout.CENTER);
-        c.add(createUsersPanel, BorderLayout.EAST);
+        c.add(adminPanel, BorderLayout.CENTER);
 
     }
 

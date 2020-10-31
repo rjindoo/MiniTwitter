@@ -1,20 +1,19 @@
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class Admin {
+public class AdminPanel {
 
-    private static Admin pointer; // lazy instantiation
+    private static AdminPanel pointer; // lazy instantiation
     private Set<Users> twitterUsers;
 
-    public static Admin getInstance() {
+    public static AdminPanel getInstance() {
         if(pointer == null){
-            pointer = new Admin();
+            pointer = new AdminPanel();
         }
         return pointer;
     }
 
-    private Admin() {
+    private AdminPanel() {
         twitterUsers = new HashSet();
     }
 

@@ -1,3 +1,5 @@
+import com.sun.source.tree.Tree;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,14 +10,14 @@ import java.util.List;
 public class Gui extends JFrame{
 
     //Hashtable<String, User> users = new Hashtable();
-    List<Users> rootsUsers = new ArrayList();
+    Admin admin = Admin.getInstance();
     private int numUser = 0;
     private int numGroupUser = 0;
     private int numMessages = 0;
     private int numNiceMessages = 0;
 
-    public Gui(String title){
-        super(title);
+    public Gui(){
+        super();
 
         setLayout(new BorderLayout());
 
@@ -36,31 +38,44 @@ public class Gui extends JFrame{
 
 
         createUserButton.addActionListener(new ActionListener() {
+            /**
+                Button action to add a new user
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
-                rootsUsers.add(new User());
+                admin.addUser(new User());
                 ++numUser;
             }
         });
         createGroupUserButton.addActionListener(new ActionListener() {
+            /**
+                Button action to add a new groupUser
+            */
             @Override
             public void actionPerformed(ActionEvent e) {
-                rootsUsers.add(new UserGroup());
+                admin.addUserGroup(new UserGroup());
                 ++numGroupUser;
             }
         });
         getNumOfUsers.addActionListener(new ActionListener() {
+            /**
+                Button action to get total number of users
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
-                //for(Users user: rootsUsers) {}
                 JOptionPane.showMessageDialog(null, "# of users: " + numUser);
 
             }
         });
         getNumOfGroupUsers.addActionListener(new ActionListener() {
+            /**
+                Button action to get total number of groupUsers
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
-                //for(Users user: rootsUsers) {}
+                /*for(Users user: admin.getTwitterUsers()) {
+                    textArea.append(""+user+"\n");
+                }*/
                 JOptionPane.showMessageDialog(null, "# of groupUsers: " + numGroupUser);
             }
         });

@@ -8,8 +8,8 @@ public class Main{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame frame = new Gui("Mini-Twitter");
-                frame.setSize(500, 400);
+                JFrame frame = new Gui();
+                frame.setSize(550, 400);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true);
             }

@@ -69,7 +69,7 @@ public class AdminPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 User tempUser = treePanel.accessCurrentNode();
-                UserViewGui userViewGui = new UserViewGui();
+                UserViewGui userViewGui = new UserViewGui(tempUser);
                 userViewGui.setVisible(true);
             }
         });

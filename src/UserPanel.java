@@ -5,66 +5,35 @@ import java.awt.event.ActionListener;
 
 public class UserPanel extends JPanel {
 
-    public UserPanel() {
+    public UserPanel(User user) {
         Dimension size = getPreferredSize();
-        size.width = 400;
+        size.width = 200;
         setPreferredSize(size);
-        setBorder(BorderFactory.createTitledBorder("Admin Panel"));
+        setBorder(BorderFactory.createTitledBorder(user + "\'s Panel"));
 
 
         final JTextField userIdField = new JTextField("User Id", 10);
-        final JTextField userGroupIdField = new JTextField("Group Id", 10);
+        final JTextField postField = new JTextField("Mini-Tweet", 10);
+
+        final JTextArea currentFollowing = new JTextArea();
+        final JTextArea newsFeed = new JTextArea();
 
 
-        JButton addUserButton = new JButton("Add User");
-        addUserButton.addActionListener(new ActionListener() {
+        JButton followUserButton = new JButton("Follow User");
+        followUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                user.create(new User(userIdField.getText()));
+                currentFollowing.append("Currently following " + user.getFollowing() + "\n");
+                // FIXME: CURRENTLY DOESNT DO ANYTHING OF IMPORTANCE LOL
             }
         });
 
-        JButton addGroupUserButton = new JButton("Add Group");
-        addGroupUserButton.addActionListener(new ActionListener() {
+        JButton postButton = new JButton("Post");
+        postButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        JButton openUserView = new JButton("Open User View");
-        openUserView.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        JButton showUserTotal = new JButton("Show User Total");
-        showUserTotal.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
-        JButton showUserGroupTotal = new JButton("Show Group Total");
-        showUserGroupTotal.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
-        JButton showMessagesTotal = new JButton("Show # of messages");
-        showMessagesTotal.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
-        JButton showPositiveMessagesTotal = new JButton("Show % of posi messages");
-        showPositiveMessagesTotal.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                // TODO
             }
         });
 
@@ -73,68 +42,37 @@ public class UserPanel extends JPanel {
         setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
 
-        gc.fill = GridBagConstraints.BOTH;
-        gc.weightx = 1;
+        gc.weightx = 0.1;
         gc.weighty = 0.1;
-        /**
-         * Row 0 / 1
-         * Column 0
-         */
+        /** Row 0 */
         gc.anchor = GridBagConstraints.LINE_START;
-        gc.gridx = 1;
         gc.gridy = 0;
+        gc.gridx = 0;
         add(userIdField, gc);
         gc.gridx = 1;
-        gc.gridy = 1;
-        add(userGroupIdField, gc);
+        add(followUserButton, gc);
 
-        /**
-         * Row 0 / 1
-         * Column 1
-         */
-        gc.anchor = GridBagConstraints.LINE_END;
-        gc.gridx = 2;
-        gc.gridy = 0;
-        add(addUserButton, gc);
-        gc.gridx = 2;
-        gc.gridy = 1;
-        add(addGroupUserButton, gc);
-
-        /**
-         * Row 3 / 4
-         * Column 0
-         */
-        gc.anchor = GridBagConstraints.LINE_START;
-        gc.gridx = 1;
-        gc.gridy = 3;
-        add(showUserTotal, gc);
-        gc.gridx = 1;
-        gc.gridy = 4;
-        add(showUserGroupTotal, gc);
-
-        /**
-         * Row 3 / 4
-         * Column 1
-         */
-        gc.anchor = GridBagConstraints.LINE_START;
-        gc.gridx = 2;
-        gc.gridy = 3;
-        add(showMessagesTotal, gc);
-        gc.gridx = 2;
-        gc.gridy = 4;
-        add(showPositiveMessagesTotal, gc);
-
-        /**
-         * Fill Column
-         * Row 2
-         */
-        gc.fill = GridBagConstraints.HORIZONTAL;
-        gc.gridwidth = 3;
-        gc.weighty = .5;
-        gc.anchor = GridBagConstraints.NORTH;
+        /** Row 2 */
+        gc.weighty = 0.1;
+        gc.weightx = 0.1;
         gc.gridy = 2;
+        gc.gridx = 0;
+        add(postField, gc);
         gc.gridx = 1;
-        add(openUserView, gc);
+        add(postButton, gc);
+
+        /** Row 3 */
+        gc.gridy = 3;
+        gc.gridx = 0;
+
+        /** Row 1 */
+        gc.fill = GridBagConstraints.BOTH;
+        gc.weightx = 0.0;
+        gc.gridwidth = 2;
+        gc.gridx = 0;
+        gc.gridy = 1;
+        add(currentFollowing, gc);
+        gc.fill = GridBagConstraints.NONE;
     }
 }
 

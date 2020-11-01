@@ -46,6 +46,7 @@ public class AdminPanel extends JPanel {
                     JOptionPane.showMessageDialog(null, "Can not add Users to a User");
                 }
                 else {
+                    ++numUser;
                     JOptionPane.showMessageDialog(null, "Added " + userIdField.getText());
                 }
             }
@@ -59,6 +60,7 @@ public class AdminPanel extends JPanel {
                     JOptionPane.showMessageDialog(null, "Can not add Users to a User");
                 }
                 else {
+                    ++numUserGroups;
                     JOptionPane.showMessageDialog(null, "Added " + userGroupIdField.getText());
                 }
             }
@@ -76,7 +78,7 @@ public class AdminPanel extends JPanel {
         showUserTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, numUser);
+                JOptionPane.showMessageDialog(null, numUser +" total Users");
             }
         });
 
@@ -84,7 +86,7 @@ public class AdminPanel extends JPanel {
         showUserGroupTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, numUserGroups);
+                JOptionPane.showMessageDialog(null, numUserGroups + " total UserGroups");
             }
         });
 

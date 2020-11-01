@@ -47,7 +47,8 @@ public class DynamicTree extends JPanel {
         toolkit.beep();
     }
 
-    /** Add child to the currently selected node. */
+    /** Add child to the currently selected node.
+     * FIXME: CONSIDER ADDING A SET TO CONTAIN ALL USERS */
     public DefaultMutableTreeNode addUsers(Users child) {
         DefaultMutableTreeNode parentNode = null;
         TreePath parentPath = tree.getSelectionPath();
@@ -66,12 +67,16 @@ public class DynamicTree extends JPanel {
     }*/
 
     public DefaultMutableTreeNode addUsers(DefaultMutableTreeNode parent, Users child, boolean shouldBeVisible) {
+
         DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(child);
 
         if (parent == null) {
             parent = rootNode;
         }
-
+        if(parent.getUserObject() instanceof User) {
+            /** Disallows add if we are adding a leaf to a User object*/
+            return null;
+        }
         //It is key to invoke this on the TreeModel, and NOT DefaultMutableTreeNode
         treeModel.insertNodeInto(childNode, parent, parent.getChildCount());
 

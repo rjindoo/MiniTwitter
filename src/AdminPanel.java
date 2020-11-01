@@ -42,8 +42,12 @@ public class AdminPanel extends JPanel {
         addUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                treePanel.addUsers(new User(userIdField.getText()));
-                JOptionPane.showMessageDialog(null, "Added " + userIdField.getText());
+                if(treePanel.addUsers(new User(userIdField.getText())) == null){
+                    JOptionPane.showMessageDialog(null, "Can not add Users to a User");
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Added " + userIdField.getText());
+                }
             }
         });
 
@@ -51,8 +55,12 @@ public class AdminPanel extends JPanel {
         addGroupUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                treePanel.addUsers(new UserGroup(userGroupIdField.getText()));
-                JOptionPane.showMessageDialog(null, "Added " + userGroupIdField.getText());
+                if(treePanel.addUsers(new UserGroup(userGroupIdField.getText())) == null){
+                    JOptionPane.showMessageDialog(null, "Can not add Users to a User");
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Added " + userGroupIdField.getText());
+                }
             }
         });
 

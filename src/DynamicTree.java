@@ -31,20 +31,20 @@ public class DynamicTree extends JPanel {
     }
 
     /** Access the currently selected node. */
-    public void accessCurrentNode() {
+    public User accessCurrentNode() {
         TreePath currentSelection = tree.getSelectionPath();
         if (currentSelection != null) {
             DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
             MutableTreeNode parent = (MutableTreeNode) (currentNode.getParent());
             if (parent != null) {
-                //treeModel.removeNodeFromParent(currentNode);
-                System.out.println("Accessing " + currentNode);
-                return;
+                //System.out.println("Accessing " + currentNode);
+                return (User) currentNode.getUserObject();
             }
         }
 
         // Either there was no selection, or the root was selected.
         toolkit.beep();
+        return null;
     }
 
     /** Add child to the currently selected node.
@@ -52,6 +52,7 @@ public class DynamicTree extends JPanel {
     public DefaultMutableTreeNode addUsers(Users child) {
         DefaultMutableTreeNode parentNode = null;
         TreePath parentPath = tree.getSelectionPath();
+
 
         if (parentPath == null) {
             parentNode = rootNode;

@@ -3,34 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AdminPanel extends JPanel {
+public class UserPanel extends JPanel {
 
-    private static AdminPanel pointer; // lazy instantiation
-    private int numUser = 0;
-    private int numUserGroups = 0;
-    private int numMessages = 0;
-    private int numNiceMessages = 0;
-    private DynamicTree treePanel;
-
-    public static AdminPanel getInstance() {
-        if(pointer == null){
-            pointer = new AdminPanel();
-        }
-        return pointer;
-    }
-
-    private AdminPanel() {
+    public UserPanel() {
         Dimension size = getPreferredSize();
         size.width = 400;
         setPreferredSize(size);
         setBorder(BorderFactory.createTitledBorder("Admin Panel"));
 
-
-        /**
-         * Creating components for the admin panel
-         */
-        treePanel = new DynamicTree();
-        treePanel.setPreferredSize(new Dimension(300, 150));
 
         final JTextField userIdField = new JTextField("User Id", 10);
         final JTextField userGroupIdField = new JTextField("Group Id", 10);
@@ -40,13 +20,7 @@ public class AdminPanel extends JPanel {
         addUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(treePanel.addUsers(new User(userIdField.getText())) == null){
-                    JOptionPane.showMessageDialog(null, "Can not add Users to a User");
-                }
-                else {
-                    ++numUser;
-                    JOptionPane.showMessageDialog(null, "Added " + userIdField.getText());
-                }
+
             }
         });
 
@@ -54,13 +28,7 @@ public class AdminPanel extends JPanel {
         addGroupUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(treePanel.addUsers(new UserGroup(userGroupIdField.getText())) == null){
-                    JOptionPane.showMessageDialog(null, "Can not add Users to a User");
-                }
-                else {
-                    ++numUserGroups;
-                    JOptionPane.showMessageDialog(null, "Added " + userGroupIdField.getText());
-                }
+
             }
         });
 
@@ -68,9 +36,7 @@ public class AdminPanel extends JPanel {
         openUserView.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                User tempUser = treePanel.accessCurrentNode();
-                UserViewGui userViewGui = new UserViewGui();
-                userViewGui.setVisible(true);
+
             }
         });
 
@@ -78,7 +44,6 @@ public class AdminPanel extends JPanel {
         showUserTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, numUser +" total Users");
             }
         });
 
@@ -86,7 +51,6 @@ public class AdminPanel extends JPanel {
         showUserGroupTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, numUserGroups + " total UserGroups");
             }
         });
 
@@ -94,7 +58,6 @@ public class AdminPanel extends JPanel {
         showMessagesTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, numMessages);
             }
         });
 
@@ -102,7 +65,6 @@ public class AdminPanel extends JPanel {
         showPositiveMessagesTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, numNiceMessages);
             }
         });
 
@@ -110,11 +72,6 @@ public class AdminPanel extends JPanel {
         /** Setting up layout for AdminPanel */
         setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
-
-        gc.gridy = 2;
-        gc.weighty = 1;
-        gc.fill = GridBagConstraints.VERTICAL;
-        add(treePanel, gc);
 
         gc.fill = GridBagConstraints.BOTH;
         gc.weightx = 1;

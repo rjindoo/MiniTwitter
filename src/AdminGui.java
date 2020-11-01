@@ -3,16 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Gui extends JFrame{
+public class AdminGui extends JFrame{
 
-    //Hashtable<String, User> users = new Hashtable();
     AdminPanel adminPanel;
 
-    public Gui(){
+    public AdminGui(){
         super("Mini-Twitter");
         setLayout(new BorderLayout());
 
-        //final JTextArea textArea = new JTextArea();
 
         /** Form for adding users and userGroups... see (CreateUsersPanel.java) */
         adminPanel = AdminPanel.getInstance();

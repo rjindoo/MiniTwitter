@@ -7,7 +7,7 @@ public class Main{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame frame = new Gui();
+                JFrame frame = new AdminGui();
                 frame.setSize(650, 500);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true);

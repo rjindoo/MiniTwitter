@@ -29,12 +29,11 @@ public class UserPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if(setOfCurrentUsers.containsKey(userIdField.getText().hashCode())) {
                     user.create(setOfCurrentUsers.get(userIdField.getText().hashCode()));
+                    currentFollowing.append("Currently following " + user.getFollowing() + "\n");
                 }
                 else{
-                    System.out.println("Could not find user");
+                    currentFollowing.append("Could not find " + userIdField.getText() + "\n");
                 }
-                currentFollowing.append("Currently following " + user.getFollowing() + "\n");
-                // FIXME: CURRENTLY DOESNT DO ANYTHING OF IMPORTANCE LOL
             }
         });
 

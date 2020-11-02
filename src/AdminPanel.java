@@ -47,7 +47,10 @@ public class AdminPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Users newUser = new User(userIdField.getText());
-                if(treePanel.addUsers(newUser) == null){
+                if(setOfCurrentUsers.containsKey(newUser.toString().hashCode())) {
+                    JOptionPane.showMessageDialog(null, "This user already exists");
+                }
+                else if(treePanel.addUsers(newUser) == null){
                     JOptionPane.showMessageDialog(null, "Can not add Users to a User");
                 }
                 else {
@@ -62,8 +65,11 @@ public class AdminPanel extends JPanel {
         addGroupUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Users newUser = new User(userGroupIdField.getText());
-                if(treePanel.addUsers(newUser) == null){
+                Users newUser = new UserGroup(userGroupIdField.getText());
+                if(setOfCurrentUserGroups.containsKey(newUser.toString().hashCode())) {
+                    JOptionPane.showMessageDialog(null, "This userGroup already exists");
+                }
+                else if(treePanel.addUsers(newUser) == null){
                     JOptionPane.showMessageDialog(null, "Can not add Users to a User");
                 }
                 else {

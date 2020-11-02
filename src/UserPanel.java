@@ -2,10 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Set;
 
 public class UserPanel extends JPanel {
 
-    public UserPanel(User user) {
+    // pass in a set of existing users
+    public UserPanel(User user, HashMap<Integer, Users> setOfCurrentUsers) {
         Dimension size = getPreferredSize();
         size.width = 200;
         setPreferredSize(size);
@@ -23,7 +27,12 @@ public class UserPanel extends JPanel {
         followUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                user.create(new User(userIdField.getText()));
+                if(setOfCurrentUsers.containsKey(userIdField.getText().hashCode())) {
+                    user.create(setOfCurrentUsers.get(userIdField.getText().hashCode()));
+                }
+                else{
+                    System.out.println("Could not find user");
+                }
                 currentFollowing.append("Currently following " + user.getFollowing() + "\n");
                 // FIXME: CURRENTLY DOESNT DO ANYTHING OF IMPORTANCE LOL
             }
@@ -33,7 +42,7 @@ public class UserPanel extends JPanel {
         postButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                // TODO: Observer Pattern for messages
             }
         });
 

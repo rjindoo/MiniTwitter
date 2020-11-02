@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AdminPanel extends JPanel {
 
@@ -11,6 +14,9 @@ public class AdminPanel extends JPanel {
     private int numMessages = 0;
     private int numNiceMessages = 0;
     private DynamicTree treePanel;
+    HashMap<Integer, Users> setOfCurrentUsers = new HashMap();
+    HashMap<Integer, Users> setOfCurrentUserGroups = new HashMap();
+
 
     public static AdminPanel getInstance() {
         if(pointer == null){
@@ -40,11 +46,13 @@ public class AdminPanel extends JPanel {
         addUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(treePanel.addUsers(new User(userIdField.getText())) == null){
+                Users newUser = new User(userIdField.getText());
+                if(treePanel.addUsers(newUser) == null){
                     JOptionPane.showMessageDialog(null, "Can not add Users to a User");
                 }
                 else {
                     ++numUser;
+                    setOfCurrentUsers.put(newUser.toString().hashCode(), newUser);
                     JOptionPane.showMessageDialog(null, "Added " + userIdField.getText());
                 }
             }
@@ -54,11 +62,13 @@ public class AdminPanel extends JPanel {
         addGroupUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(treePanel.addUsers(new UserGroup(userGroupIdField.getText())) == null){
+                Users newUser = new User(userGroupIdField.getText());
+                if(treePanel.addUsers(newUser) == null){
                     JOptionPane.showMessageDialog(null, "Can not add Users to a User");
                 }
                 else {
                     ++numUserGroups;
+                    setOfCurrentUserGroups.put(newUser.toString().hashCode(), newUser);
                     JOptionPane.showMessageDialog(null, "Added " + userGroupIdField.getText());
                 }
             }
@@ -68,8 +78,8 @@ public class AdminPanel extends JPanel {
         openUserView.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                User tempUser = treePanel.accessCurrentNode();
-                UserViewGui userViewGui = new UserViewGui(tempUser);
+                User selectedUser = treePanel.accessCurrentNode();
+                UserViewGui userViewGui = new UserViewGui(selectedUser, setOfCurrentUsers);
                 userViewGui.setVisible(true);
             }
         });

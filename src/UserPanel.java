@@ -76,10 +76,12 @@ public class UserPanel extends JPanel {
         /** Row 1 */
         gc.fill = GridBagConstraints.BOTH;
         gc.weightx = 0.0;
+        gc.weighty = 0.5;
         gc.gridwidth = 2;
         gc.gridx = 0;
         gc.gridy = 1;
-        add(currentFollowing, gc);
+        JScrollPane scrollPane = new JScrollPane(currentFollowing);
+        add(scrollPane, gc);
         gc.fill = GridBagConstraints.NONE;
     }
 }

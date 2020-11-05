@@ -8,7 +8,7 @@ public class UserViewGui extends JFrame {
 
     UserPanel userPanel;
 
-    public UserViewGui(User user, HashMap<Integer, Users> setOfCurrentUsers) {
+    public UserViewGui(User user, HashMap<Integer, User> setOfCurrentUsers) {
         super("User-View");
         setLayout(new BorderLayout());
         setSize(650, 500);

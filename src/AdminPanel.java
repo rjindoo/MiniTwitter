@@ -14,7 +14,7 @@ public class AdminPanel extends JPanel {
     private int numMessages = 0;
     private int numNiceMessages = 0;
     private DynamicTree treePanel;
-    HashMap<Integer, Users> setOfCurrentUsers = new HashMap();
+    HashMap<Integer, User> setOfCurrentUsers = new HashMap();
     HashMap<Integer, Users> setOfCurrentUserGroups = new HashMap();
 
 
@@ -46,7 +46,7 @@ public class AdminPanel extends JPanel {
         addUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Users newUser = new User(userIdField.getText());
+                User newUser = new User(userIdField.getText());
                 if(setOfCurrentUsers.containsKey(newUser.toString().hashCode())) {
                     JOptionPane.showMessageDialog(null, "This user already exists");
                 }

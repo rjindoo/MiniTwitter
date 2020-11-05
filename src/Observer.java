@@ -1,5 +1,5 @@
 public interface Observer {
 
-    public void update(Users user);
+    public void notification(String user, String message);
 
 }

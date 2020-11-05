@@ -8,8 +8,7 @@ import java.util.Set;
 
 public class UserPanel extends JPanel {
 
-    // pass in a set of existing users
-    public UserPanel(User user, HashMap<Integer, Users> setOfCurrentUsers) {
+    public UserPanel(User user, HashMap<Integer, User> setOfCurrentUsers) {
         Dimension size = getPreferredSize();
         size.width = 200;
         setPreferredSize(size);
@@ -27,12 +26,17 @@ public class UserPanel extends JPanel {
         followUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(setOfCurrentUsers.containsKey(userIdField.getText().hashCode())) {
+                Integer userKey = userIdField.getText().hashCode();
+                if(userKey == user.toString().hashCode()){
+                    JOptionPane.showMessageDialog(null, "Can not follow yourself");
+                }
+                else if(setOfCurrentUsers.containsKey(userKey)) {
                     user.create(setOfCurrentUsers.get(userIdField.getText().hashCode()));
-                    currentFollowing.append("Currently following " + user.getFollowing() + "\n");
+                    setOfCurrentUsers.get(userIdField.getText().hashCode()).attach(user);
+                    JOptionPane.showMessageDialog(null, "Successfully followed " + userIdField.getText());
                 }
                 else{
-                    currentFollowing.append("Could not find " + userIdField.getText() + "\n");
+                    JOptionPane.showMessageDialog(null, "Could not find this user");
                 }
             }
         });
@@ -41,7 +45,7 @@ public class UserPanel extends JPanel {
         postButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Observer Pattern for messages
+                user.post(postField.getText());
             }
         });
 

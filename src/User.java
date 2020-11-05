@@ -1,9 +1,10 @@
 import java.util.*;
 
-public class User implements Users{
+public class User implements Users, Observer, NewsFeed{
 
     private String userId;
-    private Set<User> followers = new HashSet();
+    private List<Observer> observers = new ArrayList();
+
     private Set<User> following = new HashSet();
 
     public User(String userId){
@@ -12,9 +13,7 @@ public class User implements Users{
 
     @Override
     public boolean create(Users user) {
-        /**
-         * Follows another user
-         */
+        /** Follows another user */
         try {
             following.add((User) user);
             return true;
@@ -25,16 +24,21 @@ public class User implements Users{
         }
     }
 
-    public void post(String message){
-        System.out.println(message);
+    @Override
+    public void attach(Observer observer) {
+        observers.add(observer);
     }
 
-    public Set<User> getFollowers(){
-        return followers;
+    @Override
+    public void detach(Observer observer) {
+        observers.remove(observer);
     }
 
-    public Set<User> getFollowing(){
-        return following;
+    @Override
+    public void notifyObservers(String message) {
+        for(Observer observer: observers){
+            observer.notification(userId, message);
+        }
     }
 
     @Override
@@ -42,4 +46,17 @@ public class User implements Users{
         return userId;
     }
 
+    @Override
+    public void notification(String user, String message) {
+        // TODO: DISPLAY MESSAGE ON THE USERPANELS
+        System.out.println(userId + " notified of tweet from " + user);
+    }
+
+    public void post(String message){
+        notifyObservers(message);
+    }
+
+    public Set<User> getFollowing(){
+        return following;
+    }
 }

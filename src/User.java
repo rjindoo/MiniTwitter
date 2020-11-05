@@ -3,7 +3,7 @@ import java.util.*;
 public class User implements Users, Observer, NewsFeed{
 
     private String userId;
-    private List<Observer> observers = new ArrayList();
+    private Set<Observer> observers = new HashSet();
 
     private Set<User> following = new HashSet();
 

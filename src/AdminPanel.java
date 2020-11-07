@@ -58,6 +58,7 @@ public class AdminPanel extends JPanel {
                     setOfCurrentUsers.put(newUser.toString().hashCode(), newUser);
                     JOptionPane.showMessageDialog(null, "Added " + userIdField.getText());
                 }
+                newUser = null;
             }
         });
 

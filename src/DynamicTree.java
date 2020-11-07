@@ -50,7 +50,8 @@ public class DynamicTree extends JPanel {
 
         if (parentPath == null) {
             parentNode = rootNode;
-        } else {
+        }
+        else {
             parentNode = (DefaultMutableTreeNode) (parentPath.getLastPathComponent());
         }
 
@@ -58,6 +59,41 @@ public class DynamicTree extends JPanel {
     }
 
     public DefaultMutableTreeNode addUsers(DefaultMutableTreeNode parent, Users child, boolean shouldBeVisible) {
+
+        DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(child);
+
+        if (parent == null) {
+            parent = rootNode;
+        }
+        if(parent.getUserObject() instanceof User) {
+            /** Disallows add if we are adding a leaf to a User object*/
+            return null;
+        }
+
+        treeModel.insertNodeInto(childNode, parent, parent.getChildCount());
+
+        if (shouldBeVisible) {
+            tree.scrollPathToVisible(new TreePath(childNode.getPath()));
+        }
+        return childNode;
+    }
+
+    /** Add a user to a UserGroup or Root. */
+    public DefaultMutableTreeNode addUsers(User child) {
+        DefaultMutableTreeNode parentNode = null;
+        TreePath parentPath = tree.getSelectionPath();
+
+        if (parentPath == null) {
+            parentNode = rootNode;
+        }
+        else {
+            parentNode = (DefaultMutableTreeNode) (parentPath.getLastPathComponent());
+        }
+
+        return addUsers(parentNode, child, true);
+    }
+
+    public DefaultMutableTreeNode addUsers(DefaultMutableTreeNode parent, User child, boolean shouldBeVisible) {
 
         DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(child);
 

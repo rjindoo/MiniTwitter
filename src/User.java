@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class User implements Users, Observer, NewsFeed{
+public class User implements Observer, NewsFeed{
 
     private String userId;
     private Set<Observer> observers = new HashSet();
@@ -10,9 +10,7 @@ public class User implements Users, Observer, NewsFeed{
     public User(String userId){
         this.userId = userId;
     }
-
-    @Override
-    public boolean create(Users user) {
+    public boolean create(User user) {
         /** Follows another user */
         try {
             following.add((User) user);

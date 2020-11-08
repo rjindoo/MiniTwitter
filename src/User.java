@@ -1,15 +1,15 @@
 import java.util.*;
 
-public class User implements Observer, NewsFeed{
+public class User implements Observer, Subject {
 
     private String userId;
     private Set<Observer> observers = new HashSet();
-
     private Set<User> following = new HashSet();
 
     public User(String userId){
         this.userId = userId;
     }
+
     public boolean create(User user) {
         /** Follows another user */
         try {
@@ -35,7 +35,7 @@ public class User implements Observer, NewsFeed{
     @Override
     public void notifyObservers(String message) {
         for(Observer observer: observers){
-            observer.notification(userId, message);
+            observer.notification(this, message);
         }
     }
 
@@ -45,8 +45,7 @@ public class User implements Observer, NewsFeed{
     }
 
     @Override
-    public void notification(String user, String message) {
-        // TODO: DISPLAY MESSAGE ON THE USERPANELS
+    public void notification(User user, String message) {
         System.out.println(userId + " notified of tweet from " + user);
     }
 

@@ -14,9 +14,7 @@ public class UserGroup implements Users{
 
     @Override
     public boolean create(Users user) {
-        /**
-         * Creates a user or userGroup in this tree's children
-         */
+        /** Creates a user or userGroup in this tree's children */
         if(users.containsKey(user.toString().hashCode())){
             System.out.println("User already exists");
             return false;
@@ -27,10 +25,6 @@ public class UserGroup implements Users{
 
     public Collection<Users> getUsers(){
         return this.users.values();
-    }
-
-    public void setUsers(List<Users> users){
-        // TODO??
     }
 
     @Override

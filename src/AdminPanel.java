@@ -90,7 +90,7 @@ public class AdminPanel extends JPanel {
                     JOptionPane.showMessageDialog(null, "Can not open a view for a UserGroup");
                 }
                 else{
-                    UserViewGui userViewGui = new UserViewGui(selectedUser, setOfCurrentUsers);
+                    UserViewGui userViewGui = new UserViewGui(selectedUser, setOfCurrentUsers, selectedUser.getTweets());
                     userViewGui.setVisible(true);
                 }
             }

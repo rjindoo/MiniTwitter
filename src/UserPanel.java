@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class UserPanel extends JPanel {
 
-    public UserPanel(User user, HashMap<Integer, User> setOfCurrentUsers) {
+    public UserPanel(User user, HashMap<Integer, User> setOfCurrentUsers, List<String> tweets) {
         Dimension size = getPreferredSize();
         size.width = 200;
         setPreferredSize(size);
@@ -47,6 +47,9 @@ public class UserPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 user.post(postField.getText());
+                for(String tweet: tweets) {
+                    currentFollowing.append(tweet + "\n");
+                }
             }
         });
 

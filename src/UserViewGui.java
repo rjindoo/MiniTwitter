@@ -9,14 +9,14 @@ public class UserViewGui extends JFrame {
 
     UserPanel userPanel;
 
-    public UserViewGui(User user, HashMap<Integer, User> setOfCurrentUsers) {
+    public UserViewGui(User user, HashMap<Integer, User> setOfCurrentUsers, List<String> tweets) {
         super("User-View");
         setLayout(new BorderLayout());
         setSize(650, 500);
         setVisible(true);
 
         /** Form for adding users and userGroups... see (CreateUsersPanel.java) */
-        userPanel = new UserPanel(user, setOfCurrentUsers);
+        userPanel = new UserPanel(user, setOfCurrentUsers, tweets);
 
         /** Content Pane to place widgets */
         Container c = getContentPane();

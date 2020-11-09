@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class UserPanel extends JPanel {
+public class UserPanel extends JPanel{
 
     public UserPanel(User user, HashMap<Integer, User> setOfCurrentUsers, List<String> tweets) {
         Dimension size = getPreferredSize();
@@ -16,11 +16,25 @@ public class UserPanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder(user + "\'s Panel"));
 
 
+        final DefaultListModel listOfFollowing = new DefaultListModel();
+        listOfFollowing.addElement("\t(Current Following)");
+        for(User x: user.getFollowing()) {
+            listOfFollowing.addElement("- " + x.toString());
+        }
+        final JList following = new JList(listOfFollowing);
+        final JScrollPane scrollingFollowing = new JScrollPane(following);
+
+        final DefaultListModel listOfTweets = new DefaultListModel();
+        listOfTweets.addElement("\t(News Feed)");
+        for(String tweet: tweets) {
+            listOfTweets.addElement("- " + tweet);
+        }
+        JList newsFeed = new JList(listOfTweets);
+        final JScrollPane scrollingNewsFeed = new JScrollPane(newsFeed);
+
+
         final JTextField userIdField = new JTextField("User Id", 10);
         final JTextField postField = new JTextField("Mini-Tweet", 10);
-
-        final JTextArea currentFollowing = new JTextArea();
-        final JTextArea newsFeed = new JTextArea();
 
 
         JButton followUserButton = new JButton("Follow User");
@@ -31,14 +45,26 @@ public class UserPanel extends JPanel {
                 if(userKey == user.toString().hashCode()){
                     JOptionPane.showMessageDialog(null, "Can not follow yourself");
                 }
+                else if(alreadyFollowing(userIdField.getText())) {
+                    JOptionPane.showMessageDialog(null, "Already following this User");
+                }
                 else if(setOfCurrentUsers.containsKey(userKey)) {
                     user.create(setOfCurrentUsers.get(userIdField.getText().hashCode()));
                     setOfCurrentUsers.get(userIdField.getText().hashCode()).attach(user);
-                    JOptionPane.showMessageDialog(null, "Successfully followed " + userIdField.getText());
+                    listOfFollowing.addElement("- " + userIdField.getText());
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Could not find this user");
                 }
+            }
+
+            private boolean alreadyFollowing(String text) {
+                for(User x: user.getFollowing()) {
+                    if(x.toString().equals(text)) {
+                        return true;
+                    }
+                }
+                return false;
             }
         });
 
@@ -47,9 +73,6 @@ public class UserPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 user.post(postField.getText());
-                for(String tweet: tweets) {
-                    currentFollowing.append(tweet + "\n");
-                }
             }
         });
 
@@ -58,6 +81,7 @@ public class UserPanel extends JPanel {
         setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
 
+        gc.fill = GridBagConstraints.BOTH;
         gc.weightx = 0.1;
         gc.weighty = 0.1;
         /** Row 0 */
@@ -77,20 +101,19 @@ public class UserPanel extends JPanel {
         gc.gridx = 1;
         add(postButton, gc);
 
-        /** Row 3 */
-        gc.gridy = 3;
-        gc.gridx = 0;
 
-        /** Row 1 */
-        gc.fill = GridBagConstraints.BOTH;
         gc.weightx = 0.0;
         gc.weighty = 0.5;
         gc.gridwidth = 2;
+        /** Row 3 */
+        gc.gridy = 3;
+        gc.gridx = 0;
+        add(scrollingNewsFeed, gc);
+
+        /** Row 1 */
         gc.gridx = 0;
         gc.gridy = 1;
-        JScrollPane scrollPane = new JScrollPane(currentFollowing);
-        add(scrollPane, gc);
-        gc.fill = GridBagConstraints.NONE;
+        add(scrollingFollowing, gc);
     }
 }
 

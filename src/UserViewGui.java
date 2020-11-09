@@ -15,10 +15,8 @@ public class UserViewGui extends JFrame {
         setSize(650, 500);
         setVisible(true);
 
-        /** Form for adding users and userGroups... see (CreateUsersPanel.java) */
         userPanel = new UserPanel(user, setOfCurrentUsers, tweets);
 
-        /** Content Pane to place widgets */
         Container c = getContentPane();
 
         c.add(userPanel, BorderLayout.CENTER);

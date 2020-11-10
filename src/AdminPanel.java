@@ -56,7 +56,6 @@ public class AdminPanel extends JPanel {
                 else {
                     ++numUser;
                     setOfCurrentUsers.put(newUser.toString().hashCode(), newUser);
-                    JOptionPane.showMessageDialog(null, "Added " + userIdField.getText());
                 }
                 newUser = null;
             }
@@ -76,7 +75,6 @@ public class AdminPanel extends JPanel {
                 else {
                     ++numUserGroups;
                     setOfCurrentUserGroups.put(newUser.toString().hashCode(), newUser);
-                    JOptionPane.showMessageDialog(null, "Added " + userGroupIdField.getText());
                 }
             }
         });

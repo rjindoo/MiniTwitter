@@ -96,7 +96,6 @@ public class DynamicTree extends JPanel {
     public DefaultMutableTreeNode addUsers(DefaultMutableTreeNode parent, User child, boolean shouldBeVisible) {
 
         DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(child);
-
         if (parent == null) {
             parent = rootNode;
         }
@@ -104,7 +103,6 @@ public class DynamicTree extends JPanel {
             /** Disallows add if we are adding a leaf to a User object*/
             return null;
         }
-
         treeModel.insertNodeInto(childNode, parent, parent.getChildCount());
 
         if (shouldBeVisible) {

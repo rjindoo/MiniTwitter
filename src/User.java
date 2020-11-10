@@ -56,11 +56,12 @@ public class User implements Observer, Subject {
     @Override
     public void notification(User user, String message) {
         System.out.println(userId + " notified of tweet from " + user);
-        this.appendTweet(user+ " tweeted: " + message);
+        this.appendTweet(user+ " posted: " + message);
     }
 
     public void post(String message){
         notifyObservers(message);
+        appendTweet("You posted: " + message);
     }
 
     public Set<User> getFollowing(){

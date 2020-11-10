@@ -6,23 +6,18 @@ public class User implements Users, Observer, Subject {
     private Set<Observer> observers = new HashSet();
     private Set<User> following = new HashSet();
     private List<String> tweets = new ArrayList();
-    private UsersVisitor addNewUser = new UserVisitor();
+
+    private NewUserVisitor addNewUser = new NewUserVisitor();
+    private MessageVisitor newMessage = new MessageVisitor();
 
     public User(String userId){
         this.userId = userId;
-        this.create();
-    }
-
-    @Override
-    public void create() {
-        this.accept(addNewUser);
     }
 
     public boolean followUser(User user) {
         /** Follows another user */
         try {
             following.add((User) user);
-            this.accept(addNewUser);
             return true;
         }
         catch (ClassCastException e){
@@ -32,8 +27,8 @@ public class User implements Users, Observer, Subject {
     }
 
     @Override
-    public void accept(UsersVisitor visitor) {
-        visitor.visitUser(this);
+    public String getName() {
+        return userId;
     }
 
     public void appendTweet(String message) {
@@ -62,11 +57,6 @@ public class User implements Users, Observer, Subject {
     }
 
     @Override
-    public String toString(){
-        return userId;
-    }
-
-    @Override
     public void notification(User user, String message) {
         System.out.println(userId + " notified of tweet from " + user);
         this.appendTweet(user+ " posted: " + message);
@@ -79,5 +69,10 @@ public class User implements Users, Observer, Subject {
 
     public Set<User> getFollowing(){
         return following;
+    }
+
+    @Override
+    public String toString(){
+        return userId;
     }
 }

@@ -7,13 +7,19 @@ public class UserGroup implements Users{
 
     private String groupId;
     private HashMap<Integer, Users> users = new HashMap();
+    private UsersVisitor addNewUserGroup = new UserVisitor();
 
     public UserGroup(String groupId){
         this.groupId = groupId;
+        this.create();
     }
 
     @Override
-    public boolean create(Users user) {
+    public void create() {
+        this.accept(addNewUserGroup);
+    }
+
+    public boolean addUsers(Users user) {
         /** Creates a user or userGroup in this tree's children */
         if(users.containsKey(user.toString().hashCode())){
             System.out.println("User already exists");
@@ -23,9 +29,14 @@ public class UserGroup implements Users{
         return true;
     }
 
-    public Collection<Users> getUsers(){
-        return this.users.values();
-    }
+    @Override
+    public void accept(UsersVisitor visitor) {
+        visitor.visitUserGroup(this);
+     }
+
+    //public Collection<Users> getUsers(){
+    //    return this.users.values();
+    //}
 
     @Override
     public String toString(){

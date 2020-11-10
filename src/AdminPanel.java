@@ -32,9 +32,7 @@ public class AdminPanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder("Admin Panel"));
 
 
-        /**
-         * Creating components for the admin panel
-         */
+        /** Creating components for the admin panel */
         treePanel = new DynamicTree();
         treePanel.setPreferredSize(new Dimension(300, 150));
 
@@ -46,18 +44,25 @@ public class AdminPanel extends JPanel {
         addUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                User newUser = new User(userIdField.getText());
-                if(setOfCurrentUsers.containsKey(newUser.toString().hashCode())) {
+                User newUser = null;
+                if(setOfCurrentUsers.containsKey(userIdField.getText().hashCode())) {
                     JOptionPane.showMessageDialog(null, "This user already exists");
                 }
+                else {
+                    newUser = new User(userIdField.getText());
+                }
+                /** Adds the user to tree if they do not already exist **/
+                if(newUser == null) { }
                 else if(treePanel.addUsers(newUser) == null){
                     JOptionPane.showMessageDialog(null, "Can not add Users to a User");
                 }
                 else {
                     ++numUser;
-                    setOfCurrentUsers.put(newUser.toString().hashCode(), newUser);
+                    try {
+                        setOfCurrentUsers.put(newUser.toString().hashCode(), newUser);
+                    }
+                    catch (NullPointerException exception) {}
                 }
-                newUser = null;
             }
         });
 
@@ -65,16 +70,24 @@ public class AdminPanel extends JPanel {
         addGroupUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Users newUser = new UserGroup(userGroupIdField.getText());
-                if(setOfCurrentUserGroups.containsKey(newUser.toString().hashCode())) {
+                Users newUser = null;
+                if(setOfCurrentUserGroups.containsKey(userGroupIdField.getText().hashCode())) {
                     JOptionPane.showMessageDialog(null, "This userGroup already exists");
                 }
+                else {
+                    newUser = new UserGroup(userGroupIdField.getText());
+                }
+                /** Adds the userGroup to tree if they do not already exist **/
+                if(newUser == null) { }
                 else if(treePanel.addUsers(newUser) == null){
                     JOptionPane.showMessageDialog(null, "Can not add Users to a User");
                 }
                 else {
                     ++numUserGroups;
-                    setOfCurrentUserGroups.put(newUser.toString().hashCode(), newUser);
+                    try {
+                        setOfCurrentUserGroups.put(newUser.toString().hashCode(), newUser);
+                    }
+                    catch (NullPointerException exception) {}
                 }
             }
         });

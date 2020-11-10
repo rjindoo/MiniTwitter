@@ -2,10 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class UserPanel extends JPanel{
 
@@ -49,7 +47,7 @@ public class UserPanel extends JPanel{
                     JOptionPane.showMessageDialog(null, "Already following this User");
                 }
                 else if(setOfCurrentUsers.containsKey(userKey)) {
-                    user.create(setOfCurrentUsers.get(userIdField.getText().hashCode()));
+                    user.followUser(setOfCurrentUsers.get(userIdField.getText().hashCode()));
                     setOfCurrentUsers.get(userIdField.getText().hashCode()).attach(user);
                     listOfFollowing.addElement("- " + userIdField.getText());
                 }

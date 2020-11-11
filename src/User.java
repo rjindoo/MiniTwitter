@@ -7,7 +7,7 @@ public class User implements Users, Observer, Subject {
     private Set<User> following = new HashSet();
     private List<String> tweets = new ArrayList();
 
-    private NewUserVisitor addNewUser = new NewUserVisitor();
+    private TotalUserVisitor addNewUser = new TotalUserVisitor();
     private MessageVisitor newMessage = new MessageVisitor();
 
     public User(String userId){
@@ -29,6 +29,11 @@ public class User implements Users, Observer, Subject {
     @Override
     public String getName() {
         return userId;
+    }
+
+    @Override
+    public void accept(UsersVisitor visitor) {
+        visitor.visit(this);
     }
 
     public void appendTweet(String message) {

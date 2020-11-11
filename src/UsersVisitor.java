@@ -1,5 +1,5 @@
 public interface UsersVisitor {
 
-    public void accept();
+    public void visit(Users user);
 
 }

@@ -27,7 +27,7 @@ public class DynamicTree extends JPanel {
     }
 
     /** Access the currently selected node. */
-    public User accessCurrentNode() {
+    public Users accessCurrentNode() {
         TreePath currentSelection = tree.getSelectionPath();
         if (currentSelection != null) {
             DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());

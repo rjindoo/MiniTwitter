@@ -4,7 +4,6 @@ public class UserGroup implements Users{
 
     private String groupId;
     private HashMap<Integer, Users> users = new HashMap();
-    private UsersVisitor addNewUserGroup = new NewUserVisitor();
 
     public UserGroup(String groupId){
         this.groupId = groupId;
@@ -13,6 +12,11 @@ public class UserGroup implements Users{
     @Override
     public String getName() {
         return groupId;
+    }
+
+    @Override
+    public void accept(UsersVisitor visitor) {
+        visitor.visit(this);
     }
 
     public boolean addUsers(Users user) {

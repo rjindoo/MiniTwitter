@@ -2,10 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
 
 public class UserPanel extends JPanel{
+
+    AdminPanel adminPanel = AdminPanel.getInstance();
 
     public UserPanel(User user, HashMap<Integer, User> setOfCurrentUsers, List<String> tweets) {
         Dimension size = getPreferredSize();
@@ -70,7 +72,24 @@ public class UserPanel extends JPanel{
         postButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                user.accept(new MessageVisitor());
+                adminPanel.incrementMessages();
+                if(containsPositiveWords(postField.getText())) {
+                    adminPanel.incrementNiceMessages();
+                    user.accept(new PositiveMessageVisitor());
+                }
                 user.post(postField.getText());
+            }
+
+            private boolean containsPositiveWords(String text) {
+                Set<String> positiveWords = new HashSet(Arrays.asList("good","nice","happy"));
+                String[] str = text.split(" ");
+                for(String s: str) {
+                    if(positiveWords.contains(s.toLowerCase())) {
+                        return true;
+                    }
+                }
+                return false;
             }
         });
 

@@ -12,7 +12,9 @@ public class AdminPanel extends JPanel {
     private int numUser = 0;
     private int numUserGroups = 0;
     private int numMessages = 0;
+    public void incrementMessages(){++numMessages;}
     private int numNiceMessages = 0;
+    public void incrementNiceMessages(){++numNiceMessages;}
     private DynamicTree treePanel;
     HashMap<Integer, User> setOfCurrentUsers = new HashMap();
     HashMap<Integer, Users> setOfCurrentUserGroups = new HashMap();
@@ -96,7 +98,7 @@ public class AdminPanel extends JPanel {
         openUserView.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                User selectedUser = treePanel.accessCurrentNode();
+                User selectedUser = (User) treePanel.accessCurrentNode();
                 if(selectedUser == null) {
                     JOptionPane.showMessageDialog(null, "Can not open a view for a UserGroup");
                 }
@@ -111,7 +113,7 @@ public class AdminPanel extends JPanel {
         showUserTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, numUser +" total Users");
+                    JOptionPane.showMessageDialog(null, "Total Users: " + numUser);
             }
         });
 
@@ -119,7 +121,7 @@ public class AdminPanel extends JPanel {
         showUserGroupTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, numUserGroups + " total UserGroups");
+                    JOptionPane.showMessageDialog(null, "Total UserGroups: " + numUserGroups);
             }
         });
 
@@ -127,7 +129,7 @@ public class AdminPanel extends JPanel {
         showMessagesTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, numMessages);
+                    JOptionPane.showMessageDialog(null, "Messages button: " + numMessages);
             }
         });
 
@@ -135,7 +137,7 @@ public class AdminPanel extends JPanel {
         showPositiveMessagesTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, numNiceMessages);
+                    JOptionPane.showMessageDialog(null, "Positive Messages: " + numNiceMessages);
             }
         });
 

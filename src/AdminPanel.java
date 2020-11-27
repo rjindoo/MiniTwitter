@@ -104,6 +104,7 @@ public class AdminPanel extends JPanel {
                 else{
                     UserViewGui userViewGui = new UserViewGui(selectedUser, setOfCurrentUsers, selectedUser.getTweets());
                     userViewGui.setVisible(true);
+                    System.out.println(selectedUser.toString() + " creation time: " + selectedUser.getCreationTime());
                 }
             }
         });
@@ -141,6 +142,35 @@ public class AdminPanel extends JPanel {
         });
 
 
+        JButton validateUsers = new JButton("Validate Users");
+        validateUsers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(User x: setOfCurrentUsers.values()) {
+                    if(x.toString().contains(" ")){
+                        System.out.println(x + " is invalid");
+                    }
+                }
+            }
+        });
+
+        JButton getRecentlyUpdated = new JButton("Get Recently Updated");
+        getRecentlyUpdated.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                User mostRecentUpdatedUser = null;
+                long mostRecentUpdateTime = Long.MAX_VALUE;
+                for(User x: setOfCurrentUsers.values()) {
+                        if (x.getLastUpdateTime() < mostRecentUpdateTime) {
+                            mostRecentUpdateTime = x.getLastUpdateTime();
+                            mostRecentUpdatedUser = x;
+                        }
+                }
+                System.out.println("Most recently updated user is " + mostRecentUpdatedUser);
+            }
+        });
+
+
         /** Setting up layout for AdminPanel */
         setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
@@ -161,7 +191,6 @@ public class AdminPanel extends JPanel {
         gc.gridx = 1;
         gc.gridy = 0;
         add(userIdField, gc);
-        gc.gridx = 1;
         gc.gridy = 1;
         add(userGroupIdField, gc);
 
@@ -173,7 +202,6 @@ public class AdminPanel extends JPanel {
         gc.gridx = 2;
         gc.gridy = 0;
         add(addUserButton, gc);
-        gc.gridx = 2;
         gc.gridy = 1;
         add(addGroupUserButton, gc);
 
@@ -185,9 +213,10 @@ public class AdminPanel extends JPanel {
         gc.gridx = 1;
         gc.gridy = 3;
         add(showUserTotal, gc);
-        gc.gridx = 1;
         gc.gridy = 4;
         add(showUserGroupTotal, gc);
+        gc.gridy = 5;
+        add(validateUsers, gc);
 
         /**
          * Row 3 / 4
@@ -197,9 +226,11 @@ public class AdminPanel extends JPanel {
         gc.gridx = 2;
         gc.gridy = 3;
         add(showMessagesTotal, gc);
-        gc.gridx = 2;
         gc.gridy = 4;
         add(showPositiveMessagesTotal, gc);
+        gc.gridy = 5;
+        add(getRecentlyUpdated, gc);
+
 
         /**
          * Fill Column

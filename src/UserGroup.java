@@ -3,15 +3,22 @@ import java.util.HashMap;
 public class UserGroup implements Users{
 
     private String groupId;
+    private long creationTime;
     private HashMap<Integer, Users> users = new HashMap();
 
     public UserGroup(String groupId){
         this.groupId = groupId;
+        creationTime = System.currentTimeMillis();
     }
 
     @Override
     public String getName() {
         return groupId;
+    }
+
+    @Override
+    public long getCreationTime() {
+        return creationTime;
     }
 
     @Override

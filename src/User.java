@@ -3,6 +3,8 @@ import java.util.*;
 public class User implements Users, Observer, Subject {
 
     private String userId;
+    private long creationTime;
+    private long lastUpdateTime;
     private Set<Observer> observers = new HashSet();
     private Set<User> following = new HashSet();
     private List<String> tweets = new ArrayList();
@@ -12,6 +14,8 @@ public class User implements Users, Observer, Subject {
 
     public User(String userId){
         this.userId = userId;
+        creationTime = System.currentTimeMillis();
+        lastUpdateTime = Long.MAX_VALUE-1;
     }
 
     public boolean followUser(User user) {
@@ -29,6 +33,15 @@ public class User implements Users, Observer, Subject {
     @Override
     public String getName() {
         return userId;
+    }
+
+    @Override
+    public long getCreationTime() {
+        return creationTime;
+    }
+
+    public long getLastUpdateTime() {
+        return lastUpdateTime;
     }
 
     @Override
@@ -63,13 +76,16 @@ public class User implements Users, Observer, Subject {
 
     @Override
     public void notification(User user, String message) {
-        System.out.println(userId + " notified of tweet from " + user);
+        lastUpdateTime = System.currentTimeMillis();
         this.appendTweet(user+ " posted: " + message);
+        System.out.println(userId + " updated: " + lastUpdateTime);
     }
 
     public void post(String message){
         notifyObservers(message);
         appendTweet("You posted: " + message);
+        lastUpdateTime = System.currentTimeMillis();
+        System.out.println(userId + " updated: " + lastUpdateTime);
     }
 
     public Set<User> getFollowing(){
